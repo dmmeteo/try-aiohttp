@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  polls-service:
+    build: ./polls
+    # command: python aiohttp_polls/main.py
+    volumes:
+      - ./polls:/app
+    ports:
+      - "5000:8080"
