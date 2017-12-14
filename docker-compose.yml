@@ -1,10 +1,24 @@
 version: "3"
 
 services:
-  polls-service:
+  web:
     build: ./polls
-    # command: python aiohttp_polls/main.py
     volumes:
       - ./polls:/app
     ports:
-      - "5000:8080"
+      - "5000:5000"
+
+  db:
+    image: postgres:9.4
+    # container_name: db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - backend
+
+volumes:
+  db-data:
+
+networks:
+  frontend:
+  backend:
