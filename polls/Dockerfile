@@ -9,8 +9,8 @@ ADD . /app
 RUN pip install -r requirements.txt
 # Install utils
 RUN apk add --no-cache bash
-# Make port 80 available for links and/or publish
-EXPOSE 5000
+# Make port 8000 available for links and/or publish
+EXPOSE 8000
 
 # Define our command to be run when launching the container
-CMD [ "python", "aiohttp_polls/main.py" ]
+# CMD ['adev', 'serve', './aiohttp_polls/']
