@@ -3,22 +3,21 @@ version: "3"
 services:
   web:
     build: ./polls
-    # command: bash
-    command: adev serve aiohttp_polls/
+    # command: python aiohttp_polls/main.py
     volumes:
       - ./polls:/app
     ports:
-      - 8000:8000
+      - "8000:8080"
 
   db:
     image: postgres:9.4
     # container_name: db
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - "db-data:/var/lib/postgresql/data"
     # networks:
     #   - backend
     ports:
-      - 5433:5432
+      - "5432:5432"
 
 volumes:
   db-data:
