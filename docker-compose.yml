@@ -12,12 +12,18 @@ services:
   db:
     image: postgres:9.4
     # container_name: db
-    volumes:
-      - "db-data:/var/lib/postgresql/data"
-    # networks:
-    #   - backend
+    restart: always
+    # environment:
+      # - POSTGRES_PASSWORD=postgress
+      # - POSTGRES_USER=postgres
+      # - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    # command: /bin/bash
+    # networks:
+    #   - backend
 
 volumes:
   db-data:
