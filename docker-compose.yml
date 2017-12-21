@@ -3,6 +3,7 @@ version: "3"
 services:
   web:
     build: ./polls
+    restart: always
     volumes:
       - ./polls:/app
     ports:
