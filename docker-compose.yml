@@ -7,7 +7,7 @@ services:
     volumes:
       - ./polls:/app
     ports:
-      - 8000:8080
+      - 8000:8000
 
   db:
     image: postgres:10-alpine

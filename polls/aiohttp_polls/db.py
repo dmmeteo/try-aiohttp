@@ -1,6 +1,8 @@
 import aiopg.sa
 import sqlalchemy as sa
 
+__all__ = ['question', 'choice']
+
 meta = sa.MetaData()
 
 question = sa.Table(
@@ -27,5 +29,35 @@ choice = sa.Table(
 )
 
 
-engine = sa.create_engine('postgresql://postgres:postgress@db:5432/postgres', echo=True)
-meta.create_all(engine)
+async def init_pg(app):
+    conf = app['config']['postgres']
+    print(conf)
+    engine = await aiopg.sa.create_engine(
+        database=conf['database'],
+        user=conf['user'],
+        password=conf['password'],
+        host=conf['host'],
+        port=conf['port'],
+        minsize=conf['minsize'],
+        maxsize=conf['maxsize'],
+        loop=app.loop)
+    print(engine)
+    app['db'] = engine
+
+async def close_pg(app):
+    app['db'].close()
+    await app['db'].wait_closed()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
