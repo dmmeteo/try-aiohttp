@@ -3,19 +3,20 @@ version: "3"
 services:
   web:
     build: ./polls
-    restart: always
+    command: python aiohttp_polls/main.py
     volumes:
       - ./polls:/app
     ports:
       - 8000:8000
+    depends_on:
+      - db
 
   db:
-    image: postgres:10-alpine
-    restart: always
+    image: postgres
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD=postgress
+      POSTGRES_PASSWORD: postgres
     ports:
       - 5432:5432
-    volumes:
-      - ./database:/var/lib/postgresql/data
     #run in bash: psql -h localhost -U postgres 
