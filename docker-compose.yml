@@ -1,15 +1,22 @@
 version: "3"
 
 services:
-  web:
-    build: ./polls
+  server:
+    build: ./server
     # command: python aiohttp_polls/main.py
     volumes:
-      - ./polls:/app
+      - ./server:/app
     ports:
       - 8000:8000
     depends_on:
       - db
+
+  client:
+    build: ./client
+    volumes:
+      - ./client:/app
+    ports:
+      - 4200:4200
 
   db:
     image: postgres
