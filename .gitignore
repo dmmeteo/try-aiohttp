@@ -102,3 +102,4 @@ ENV/
 
 # database
 db-data/
+node_modules/

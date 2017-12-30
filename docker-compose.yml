@@ -13,6 +13,7 @@ services:
 
   client:
     build: ./client
+    command: npm start --host 0.0.0.0
     volumes:
       - ./client:/app
     ports:
