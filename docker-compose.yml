@@ -13,11 +13,11 @@ services:
 
   client:
     build: ./client
-    command: npm start --host 0.0.0.0
+    command: yarn start
     volumes:
       - ./client:/app
     ports:
-      - 4200:4200
+      - 3000:3000
 
   db:
     image: postgres
