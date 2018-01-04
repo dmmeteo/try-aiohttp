@@ -1,17 +1,20 @@
-FROM node:8
+FROM node:8.9.3-alpine
+RUN npm install -g create-react-app
 
-ADD yarn.lock /yarn.lock
-ADD package.json /package.json
+# Yarn install
+ENV PATH /root/.yarn/bin:$PATH
+RUN apk update \
+  && apk add curl bash binutils tar \
+  && rm -rf /var/cache/apk/* \
+  && /bin/bash \
+  && touch ~/.bashrc \
+  && curl -o- -L https://yarnpkg.com/install.sh | bash \
+  && apk del curl tar binutils
 
-ENV NODE_PATH=/node_modules
-ENV PATH=$PATH:/node_modules/.bin
-RUN yarn
-
+RUN mkdir /app
 WORKDIR /app
 ADD . /app
+RUN yarn
 
-EXPOSE 3000
+EXPOSE  3000
 EXPOSE 35729
-
-# ENTRYPOINT ["/bin/bash", "/app/run.sh"]
-# CMD ["start"]
