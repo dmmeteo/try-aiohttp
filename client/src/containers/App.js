@@ -3,7 +3,6 @@ import {Container} from 'reactstrap';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Page from '../components/Page';
-import User from '../components/User';
 import * as pageActions from '../actions/PageActions';
 import Header from '../components/Header';
 import AddArticleForm from '../components/AddArticleForm';
@@ -28,8 +27,7 @@ class App extends React.Component {
 
         return (
             <div>
-                <Header items={menu}/>
-                <User name={user.name}/>
+                <Header items={menu} name={user.name}/>
                 <Container>
                     <AddArticleForm/>
                     <hr/>

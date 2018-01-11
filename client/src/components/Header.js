@@ -1,5 +1,6 @@
 import React from 'react';
 import RegistarationForm from './RegistrationForm';
+import UserForm from './UserForm';
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 
 export default class Header extends React.Component {
@@ -19,6 +20,8 @@ export default class Header extends React.Component {
     }
 
     render() {
+        const username = this.props.name
+        let formTemplate = (username === 'Anonymous') ? <RegistarationForm/>:<UserForm name={username}/>
         //TODO toggle user/login
         return (
             <div>
@@ -36,7 +39,7 @@ export default class Header extends React.Component {
                             )}
                         </Nav>
                         <Nav className="ml-auto" navbar>
-                            <RegistarationForm/>
+                            {formTemplate}
                         </Nav>
                     </Collapse>
                 </Navbar>
