@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 
-
 const store = configureStore();
 
 ReactDOM.render(
