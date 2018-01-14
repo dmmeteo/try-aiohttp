@@ -5,9 +5,11 @@ services:
     build: ./server
     command: adev runserver
     environment:
-      AIO_APP_PATH: ${AIO_APP_PATH}
-      APP_COOKIE_SECRET: ${APP_COOKIE_SECRET}
+      AIO_APP_PATH: ${APP_PATH}
+      APP_DB_NAME: ${POSTGRES_DB}
+      APP_DB_USER: ${POSTGRES_USER}
       APP_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      APP_COOKIE_SECRET: ${COOKIE_SECRET}
     volumes:
       - ./server:/app
     ports:
