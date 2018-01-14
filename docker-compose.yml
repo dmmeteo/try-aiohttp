@@ -3,6 +3,11 @@ version: "3"
 services:
   server:
     build: ./server
+    command: adev runserver
+    environment:
+      AIO_APP_PATH: ${AIO_APP_PATH}
+      APP_COOKIE_SECRET: ${APP_COOKIE_SECRET}
+      APP_DB_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ./server:/app
     ports:
