@@ -14,6 +14,9 @@ services:
       - ./server:/app
     ports:
       - 8000:8000
+    depends_on: 
+      - db
+      - redis
 
   client:
     build: ./client
@@ -23,6 +26,13 @@ services:
     ports:
       - 3000:3000
       - 35729:35729
+
+  redis:
+    image: redis:alpine
+    volumes:
+    - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379
 
   db:
     image: postgres
